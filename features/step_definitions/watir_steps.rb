@@ -92,21 +92,21 @@ end
 
 
 def text_field_by_id(id)
-  begin
-    element = @browser.text_field(:id, id)
-  rescue Watir::Exception::UnknownObjectException => e
-    return nil
-  end
+  element = @browser.text_field(:id, id)
+  element if element.exists?
 end
 
 def text_field_by_name(id)
   element = @browser.text_field(:name, id)
+  element if element.exists?
   
 end
 
 def text_field_by_label(label)
   element_id = element_id_by_label(label)
   element = @browser.text_field(:id, element_id)
+  element if element.exists?
+  
 end
 
 def element_id_by_label(label)

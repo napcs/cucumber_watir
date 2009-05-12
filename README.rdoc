@@ -1,11 +1,25 @@
 = Web Testing with Cucumber and WATIR
 
+This is a great way to test web sites or automate web processes using the descriptive Cucumber language.
+  
+  Feature: Search for code
+    In order to implement a Javascript image rollover
+    As a developer
+    I want to be able to search for code by description
+  
+    Scenario: Find a rollover solution
+      Given I go to "http://www.snippetstash.com/"
+        And I fill in "q" with "rollover"
+       When I press "Search"
+       Then I should see a link to "Simple Prototype image rollover"
+
+See the sample features in this project for more:
 
 == Installation
 
 We'll need some gems
 
-== Windows
+=== Windows
 
   gem install cucumber watir rspec --no-ri --no-rdoc
   
@@ -13,16 +27,20 @@ You can get colored output by installing win32console
   
   gem install win32console --no-ri --no-rdoc
 
-== Mac
+=== Mac
 
-  sudo gem install cucumber firewatir safariwatir watir rspec --no-ri --no-rdoc
+  sudo gem install cucumber firewatir safariwatir rspec --no-ri --no-rdoc
 
-== Firefox support
+=== Firefox support
 
 Install your platform's JSSh plugin from here:  
   
   http://wiki.openqa.org/display/WTR/FireWatir+Installation  
 
+
+== Usage
+
+Write stories in plain English using the provided watir_matchers set, or write your own custom matchers.
 
 
 == Project structure
