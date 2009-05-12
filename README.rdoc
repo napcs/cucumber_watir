@@ -42,6 +42,13 @@ Install your platform's JSSh plugin from here:
 
 Write stories in plain English using the provided watir_matchers set, or write your own custom matchers.
 
+Run these stories with
+
+  rake features
+
+or, to use Firefox instead,
+
+  rake features FIREWATIR=true
 
 == Project structure
 
@@ -54,3 +61,12 @@ features
  - support
      - env.rb
      
+== License
+
+Watir matchers copyright 2009 Brian Hogan
+Everything else is part of the Cucumber or Watir project
+All under the MIT license.
+
+== Acknowledgements
+
+This was based of the Cucumber samples. The Watir matchers are built by Brian Hogan
