@@ -1,0 +1,3 @@
+Then /the page should have valid markup/ do
+  @browser.html.should be_valid_xhtml
+end

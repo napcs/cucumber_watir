@@ -1,0 +1,63 @@
+
+
+
+When /^I visit "(.*)"$/ do |url| 
+  @browser.goto(url)
+end
+
+
+
+
+
+When /^I click "(.*)"$/ do |text|
+  link = @browser.link(:text, text)
+  link.click
+end
+ 
+Then /^I should see a link to "(.*)" with the url "(.*)"$/ do |text, url|
+  link = @browser.link(:url, url)
+  link.should_not == nil
+  link.text.should == text
+end
+
+Then /^I should see a link that contains the text "(.*)" and the url (.*)$/ do |text, url|
+  link = @browser.link(:url, url)
+  link.should_not == nil
+  link.text.should include text
+end
+
+Then /^I should see a link that contains "(.*)"$/ do |text|
+  link = @browser.link(:text, text)
+  link.should_not == nil
+
+end
+
+Then /I should see a link  with the url (.*)$/ do |url|
+  link = @browser.link(:url, url)
+  link.should_not == nil
+end
+
+Then /I should see the standard page title/ do 
+  @browser.title.should include(", UW-Eau Claire")
+end
+
+Then /I should see "(.*)"/ do |text|
+  @browser.text.should include(text)
+end
+
+Then /I should not see "(.*)"/ do |text|
+  @browser.text.should_not include(text)
+end
+
+# Find image by alt and click it
+Then /I click the "(.*)" image$/ do |alt|
+  our_image = @browser.image(:alt , alt).click
+
+end
+
+Given /^I click the key icon$/ do
+  key_icon = @browser.image(:alt, "Login to the cms").click
+
+end
+
+

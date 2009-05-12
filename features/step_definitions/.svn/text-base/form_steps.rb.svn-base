@@ -1,0 +1,34 @@
+When /^I fill in "(.*)" with "(.*)"$/ do |label_text, value|
+   id = @browser.label(:text, label_text).for
+   @browser.text_field(:id, id).set(value)
+end
+
+
+When /^I fill in the field with the name "(.*)" with "(.*)"$/ do |name, value|
+   @browser.text_field(:name, name).set(value)
+end
+
+# Buttons get pressed, links get clicked
+When /^I press "(.*)"$/ do |value|
+  @browser.button(:value, value).click
+end
+
+When /^I select "(.*)" from the "(.*)" box$/ do |text, name_of_select_box|
+  @browser.select_list(:name, name_of_select_box).select(text)
+end
+
+
+When /^I choose the radio button with the value of "(.*)"$/ do |text|
+  @browser.radio(:value, text).set
+
+end
+
+When /^I choose the radio button with the name of "(.*)" with the value "(.*)"$/ do |name, value|
+  @browser.radio(:name, name, value).set
+
+end
+
+
+Then /^I should see a form that goes to "(.*)"$/ do |action|
+  @browser.form(:action, action)
+end

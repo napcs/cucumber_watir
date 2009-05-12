@@ -1,0 +1,38 @@
+= Web Testing with Cucumber and WATIR
+
+
+== Installation
+
+We'll need some gems
+
+== Windows
+
+  gem install cucumber watir rspec --no-ri --no-rdoc
+  
+You can get colored output by installing win32console
+  
+  gem install win32console --no-ri --no-rdoc
+
+== Mac
+
+  sudo gem install cucumber firewatir safariwatir watir rspec --no-ri --no-rdoc
+
+== Firefox support
+
+Install your platform's JSSh plugin from here:  
+  
+  http://wiki.openqa.org/display/WTR/FireWatir+Installation  
+
+
+
+== Project structure
+
+features
+ - my_web_site.feature
+ - another_form.feature
+ - step_definitions
+   - my_web_site_steps.rb
+   - watir_steps.rb
+ - support
+     - env.rb
+     
