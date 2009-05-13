@@ -1,5 +1,6 @@
 require 'spec/expectations'
 require 'watir'
+
 if ENV['FIREWATIR']
   Watir::Browser.default = 'firefox'
   browser = Watir::Browser.new
@@ -28,6 +29,8 @@ end
  
 # "after all"
 at_exit do
-  browser.close
+  unless ENV["STAY_OPEN"]
+    browser.close
+  end
 end
  

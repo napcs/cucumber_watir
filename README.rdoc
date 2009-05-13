@@ -50,6 +50,13 @@ or, to use Firefox instead,
 
   rake features FIREWATIR=true
 
+== Writing your own matchers
+
+Matchers get written as regular expression matchers. Generally, steps you haven't created are presented to you when you run Cucumber.
+To implement the bodies of the steps, use the Watir API.
+
+  http://wtr.rubyforge.org/rdoc/
+
 == Project structure
 
 features

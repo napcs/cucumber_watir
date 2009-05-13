@@ -53,9 +53,8 @@ end
 ## Forms
 When /^I fill in "(.*)" with "(.*)"$/ do |id, value|
 
-  #field = text_field_by_id(id) || text_field_by_name(id) #|| text_field_by_label(id)
-  #field.set(value)
-  text_field_by_name(id).set(value)
+  field = text_field_by_id(id) || text_field_by_name(id) || text_field_by_label(id)
+  field.set(value)
 
 end
 
@@ -89,6 +88,13 @@ Then /^I should see a form that goes to "(.*)"$/ do |action|
   @browser.form(:action, action)
 end
 
+Then /^The browser's URL should be "(.*)"$/ do |browser_url|
+  @browser.url.should == browser_url
+end
+
+Then /^The browser's URL should contain "(.*)"$/ do |string|
+  @browser.url.should include(string)
+end
 
 
 def text_field_by_id(id)
