@@ -42,13 +42,68 @@ Install your platform's JSSh plugin from here:
 
 Write stories in plain English using the provided watir_matchers set, or write your own custom matchers.
 
+=== Included matchers:
+
+These matchers are available for use in your stories. Each one can be used interchangeably
+ with <tt>Given</tt>, <tt>When</tt>, <tt>Then</tt>, or <tt>And</tt>.
+
+  [urls] When I visit "http://www.twitter.com/"
+  [urls] When I go to "http://www.twitter.com/"
+  [links] When I click "Apply Now"
+  [links] Then I should see a link to "Our blog" with the url "http://www.foo.bar.com/"
+  [links] Then I should see a link that contains the text "Our blog" and the url "http://www.foo.bar.com/"
+  [links] Then I should see a link to "Sign up!"
+  [links] Then I should see a link with the url "http://www.foo.bar.com/"
+  [general] Given I see "Record added successfully"
+  [general] Then I should see "Record added successfully"
+  [general] Then I should not see "You don't have access to that feature"
+  [image] When I click the "Apply now" image  (uses ALT text)
+  [text fields] When I fill in "Username" with "Foo"
+  [select box] When I select "English" from "Languages"
+  [check box] When I check "Remember me"
+  [check box] When I uncheck "Remember me"
+  [check box] Then the "Remember me" checkbox should be checked
+  [check box] Then the "Remember me" checkbox should not be checked
+  [radio button] When I choose "Remember me"
+  [radio button] Then the "Remember me" option should be chosen
+  [radio button] Then the "Remember me" option should not be chosen
+  [buttons] When I press "Submit" 
+  [buttons] When I press "Submit" and wait for a new page
+  [buttons] When I press "Submit" and wait 5 seconds
+  [Forms] Then I should see a form that goes to "http://www.foo.bar.com/signup"
+  [browser] I should be at "http://www.foo.com/"
+  [browser] The browser's URL should be "http://www.foo.com/"
+  [browser] The browser's URL should contain "https:"
+
+== A sample story
+
+Stories always have a feature and a value
 Run these stories with
 
   rake features
+  
+On Windows, it will use IE by default. On the Mac, it'll use Firefox. You can override this
 
-or, to use Firefox instead,
+  rake features BROWSER=firefox
+  rake features BROWSER=safari
+  
+  
+=== Safari users
 
-  rake features FIREWATIR=true
+Safariwatir is in a pretty sad state. It doesn't have the ability to
+
+ * find checkbox fields by label
+ * find fields by name with nested names (user[first_name])
+ 
+as well as other things. Be aware of these limitations if you choose to use it. The default on Apple platforms is to use Firefox
+  
+
+== Running a story
+
+You can run a specific story with 
+
+  cucumber $ rake features FEATURE=features/twitter.feature               
+  
 
 == Writing your own matchers
 
@@ -56,6 +111,35 @@ Matchers get written as regular expression matchers. Generally, steps you haven'
 To implement the bodies of the steps, use the Watir API.
 
   http://wtr.rubyforge.org/rdoc/
+  
+Place your steps in <tt>step_definitions/</tt>. The filename should be suffixed with <tt>_steps.rb</tt>.
+=== Displaying steps
+
+The rake task
+
+  rake steps
+  
+will display any steps available.  To get your custom
+steps to show up, simply code a matcher and comment it with
+three hash marks and this task will parse it out for you.
+
+This one will show up:
+
+  ### [radio button] Then the "Remember me" option should be chosen
+  Then /^the "([^\"]*)" option should be chosen$/ do |field|
+    field = find_radio(field)
+    field.should be_checked
+  end
+
+This one will not.
+
+  # Then the "Remember me" option should not be chosen
+  Then /^the "([^\"]*)" option should not be chosen$/ do |field|
+    field = find_radio(field)
+    field.should_not be_checked
+  end
+
+The task simply finds all lines starting with ###. This way you can have other comments in your matcher files.
 
 == Project structure
 

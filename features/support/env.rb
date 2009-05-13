@@ -1,14 +1,22 @@
 require 'spec/expectations'
 require 'watir'
 
-if ENV['FIREWATIR']
+if ENV['BROWSER'] == 'firefox'
   Watir::Browser.default = 'firefox'
   browser = Watir::Browser.new
   
 else
   case RUBY_PLATFORM
   when /darwin/
-    browser = Watir::Safari.new
+   
+    if ENV['BROWSER'] == 'safari'
+      #Safariwatir is basically crap and not usable right now.
+      browser = Watir::Safari.new
+    else
+      Watir::Browser.default = 'firefox' 
+      browser = Watir::Browser.new
+    end
+
   when /win32|mingw/
     Watir::Browser.default = 'ie'
     browser = Watir::Browser.new
