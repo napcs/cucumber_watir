@@ -1,6 +1,8 @@
 = Web Testing with Cucumber and WATIR
 
-This is a great way to test web sites or automate web processes using the descriptive Cucumber language.
+This is a great way to test web sites or automate web processes using the descriptive
+Cucumber language called Gherkin.  You can use plain-text stories
+like this one:
   
   Feature: Search for code
     In order to implement a Javascript image rollover
@@ -12,6 +14,8 @@ This is a great way to test web sites or automate web processes using the descri
         And I fill in "q" with "rollover"
        When I press "Search"
        Then I should see a link to "Simple Prototype image rollover"
+
+to drive your web browser. It's a great way to automate or to drive your development process.
 
 See the sample features in this project for more:
 
@@ -40,12 +44,35 @@ Install your platform's JSSh plugin from here:
 
 == Usage
 
-Write stories in plain English using the provided watir_matchers set, or write your own custom matchers.
+Write stories in plain English using the provided watir_matchers set, or write your own custom matchers. 
 
+=== How to write them
+
+Stories always have a feature and a reason for the feature.  Follow the
+
+  In order to ...
+    As a ...
+  I want to ...
+  
+If you can't think of a reason, the feature may not be that important.  
+
+Next, write scenarios to drive the browser.
+
+  Scenario: Filling out the signup form
+    Given I go to "http://foo.com/signup"
+     When I fill in "Name" with "Brian Hogan"
+      And I fill in "Email" with "nospam@gmail.com"
+      And I fill in "City" with "Eau Claire"
+      And I fill in "State" with "WI"
+      And I uncheck "Send me updated news"
+      And I select "Male" from "Gender"
+      And I press "Sign up"
+     Then I should see "Thank you for signing up!"
+     
 === Included matchers:
 
 These matchers are available for use in your stories. Each one can be used interchangeably
- with <tt>Given</tt>, <tt>When</tt>, <tt>Then</tt>, or <tt>And</tt>.
+with <tt>Given</tt>, <tt>When</tt>, <tt>Then</tt>, or <tt>And</tt>.
 
   [urls] When I visit "http://www.twitter.com/"
   [urls] When I go to "http://www.twitter.com/"
@@ -75,10 +102,38 @@ These matchers are available for use in your stories. Each one can be used inter
   [browser] The browser's URL should be "http://www.foo.com/"
   [browser] The browser's URL should contain "https:"
 
-== A sample story
+=== Looking up fields
 
-Stories always have a feature and a value
-Run these stories with
+You may notice that the features seemed to read very wel.
+
+   When I fill in "Name" with "Brian Hogan"
+   
+The matcher for this step actually uses the <tt>label</tt> tag to locate the form. Here, we're 
+specifying the label's text. We assume this code exists on the form:
+
+   <label for="user_name">Name</label>
+   <input type="text" id="user_name" name="user[name]" />
+   
+However, sometimes it's not that easy. Sometimes the form was coded wrong, or there's no matching
+label tag. So, these matchers support lookup by id
+
+   When I fill in "user_name" with "Brian Hogan"
+   
+Or by name
+
+   When I fill in "user[name]" with "Brian Hogan"
+
+This works for buttons, select lists, checkboxes, and radio buttons.
+
+Additionally, buttons can be found by their value.
+
+  When I press "Submit"
+
+Read through the matchers. You'll learn tons.
+
+== Running stories
+
+Run all of your feature stories with
 
   rake features
   
