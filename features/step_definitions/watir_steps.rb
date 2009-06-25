@@ -13,6 +13,15 @@ When /^I click "(.*)"$/ do |text|
   link = @browser.link(:text, text)
   link.click
 end
+
+
+### [links] When I click "Apply Now"
+When /^I click "(.*)" and comfirm the popup$/ do |text|
+  link = @browser.link(:text, text)
+  startClicker("OK" , 3)
+  link.click_no_wait
+  
+end
  
 ### [links] Then I should see a link to "Our blog" with the url "http://www.foo.bar.com/"
 Then /^I should see a link to "(.*)" with the url "(.*)"$/ do |text, url|
@@ -160,9 +169,19 @@ Then /^The browser's URL should be "(.*)"$/ do |browser_url|
   @browser.url.should == browser_url
 end
 
+### [browser] The browser's URL should not be "http://www.foo.com/"
+Then /^The browser's URL should not be "(.*)"$/ do |browser_url|
+  @browser.url.should_not == browser_url
+end
+
 ### [browser] The browser's URL should contain "https:"
 Then /^The browser's URL should contain "(.*)"$/ do |string|
   @browser.url.should include(string)
+end
+
+### [browser] The browser's URL should not contain "https:"
+Then /^The browser's URL should not contain "(.*)"$/ do |string|
+  @browser.url.should_not include(string)
 end
 
 When /^I attach the file at "([^\"]*)" to "([^\"]*)"$/ do |path, field|
@@ -221,3 +240,16 @@ end
 def element_id_by_label(label)
     element_id = @browser.label(:text, label).for
 end
+
+def startClicker( button , waitTime = 3)
+      w = WinClicker.new
+      longName = $ie.dir.gsub("/" , "\\" )
+      shortName = w.getShortFileName(longName)
+      c = "start rubyw #{shortName }\\watir\\clickJSDialog.rb #{button }#{ waitTime} "
+      puts "Starting #{c}"
+      w.winsystem(c)
+      w=nil
+end
+
+
+
