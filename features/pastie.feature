@@ -6,9 +6,10 @@ Feature: Share code with others
   
   Scenario: Create a private paste
     Given I go to "http://www.pastie.org/"
-     When I fill in "paste[body]" with "This is a simple test case using Cucumber"
-      And I select "Plain text" from "Language:"
+      And I fill in "paste[body]" with "This is a simple test case using Cucumber"
+      And I select "Plain text" from "paste_parser_id"
       And I check "paste[restricted]"
-       And I press "Paste"
+      When I press "Paste"
       Then I should see "less than a minute ago"  
-   
+      When I click "Edit"
+       Then I should see "This paste will be private."

@@ -73,9 +73,10 @@ Next, write scenarios to drive the browser.
 
 These matchers are available for use in your stories. Each one can be used interchangeably
 with <tt>Given</tt>, <tt>When</tt>, <tt>Then</tt>, or <tt>And</tt>.
-
+  
   [urls] When I visit "http://www.twitter.com/"
   [urls] When I go to "http://www.twitter.com/"
+  [links] When I click "Apply Now"
   [links] When I click "Apply Now"
   [links] Then I should see a link to "Our blog" with the url "http://www.foo.bar.com/"
   [links] Then I should see a link that contains the text "Our blog" and the url "http://www.foo.bar.com/"
@@ -97,11 +98,22 @@ with <tt>Given</tt>, <tt>When</tt>, <tt>Then</tt>, or <tt>And</tt>.
   [buttons] When I press "Submit" 
   [buttons] When I press "Submit" and wait for a new page
   [buttons] When I press "Submit" and wait 5 seconds
+  [Waiting] When I wait 10 seconds
+  [DIVs] Then I should see a div with the id "navbar"
+  [DIVs] And I wait until I see a div with the id "dialog"
   [Forms] Then I should see a form that goes to "http://www.foo.bar.com/signup"
   [browser] I should be at "http://www.foo.com/"
   [browser] The browser's URL should be "http://www.foo.com/"
+  [browser] The browser's URL should not be "http://www.foo.com/"
   [browser] The browser's URL should contain "https:"
-
+  [browser] The browser's URL should not contain "https:"
+  [files] When I attach the file at "c:/foo/bar.exe" to "Your mugshot"
+  [JS] When I move the mouse over the div containing "more information"
+  [General] I should see an element with id of "cs_env_status"
+  [General] I should NOT see an element with id of "cs_env_status"
+  ###[General] The element with id of "cs_PageModeContainer" contains "Read" 
+  ###[General] The element with id of "cs_PageModeContainer" and NOT contains "Read"
+  
 === Looking up fields
 
 You may notice that the features seemed to read very wel.
@@ -167,7 +179,8 @@ To implement the bodies of the steps, use the Watir API.
 
   http://wtr.rubyforge.org/rdoc/
   
-Place your steps in <tt>step_definitions/</tt>. The filename should be suffixed with <tt>_steps.rb</tt>.
+Place your steps in <tt>step_definitions/</tt>. The filename should be suffixed with <tt>_steps.rb</tt>. Don't add to the existing <tt>watir_steps</tt> file. Make your own.
+
 === Displaying steps
 
 The rake task

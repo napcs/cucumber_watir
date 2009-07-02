@@ -153,6 +153,23 @@ When /^I press "([^\"]*)" and wait ([^\"]*) seconds$/ do |button, number_of_seco
   sleep number_of_seconds.to_i
 end
 
+### [Waiting] When I wait 10 seconds
+ Given /I wait (\d+) seconds*/ do |number_of_seconds|
+  sleep number_of_seconds.to_i
+end
+
+### [DIVs] Then I should see a div with the id "navbar"
+Given /I should see a div with the id "([^\"]*)"$/ do |id|
+  @browser.div(:id, id).exists?
+end
+
+### [DIVs] And I wait until I see a div with the id "dialog"
+Given /^I wait until I see a div with the id "([^\"]*)"$/ do |id|
+  7.times do |i|
+    break if @browser.div(:id, id).exists?
+    i == 7 ? raise(Watir::Exception::UnknownObjectException) : sleep(1)
+  end
+end
 
 ### [Forms] Then I should see a form that goes to "http://www.foo.bar.com/signup"
 Then /^I should see a form that goes to "(.*)"$/ do |action|
@@ -184,11 +201,47 @@ Then /^The browser's URL should not contain "(.*)"$/ do |string|
   @browser.url.should_not include(string)
 end
 
+### [files] When I attach the file at "c:/foo/bar.exe" to "Your mugshot"
 When /^I attach the file at "([^\"]*)" to "([^\"]*)"$/ do |path, field|
   field = find_file_field(field)
   field.set(path)
-
 end
+
+### [JS] When I move the mouse over the div containing "more information"
+Then /^I move the mouse over the div containing "([^\"]*)"$/ do |div_text|
+  divs = browser.divs
+  divs.each do |d|
+    if d.text.downcase.match(/#{div_text}/i)
+      d.fire_event('onmouseover')
+    end
+  end
+end
+
+### [General] I should see an element with id of "cs_env_status"
+Then /^I see an element with an id of "(.*)"$/ do |id|
+  @browser.element_by_xpath("id('#{id}')").exists?  
+end 
+
+### [General] I should NOT see an element with id of "cs_env_status"
+Then /^the element with id of "(.*)" should not exist$/ do |id|
+  body_element = @browser.element_by_xpath("id('#{id}')")
+  body_element.exists?.should ==false 
+end
+
+###[General] The element with id of "cs_PageModeContainer" contains "Read" 
+Then /^the element with id of "(.*)" contains "(.*)"$/ do |id, string|
+  body_element = @browser.element_by_xpath("id('#{id}')")
+  body_element.exists?  
+  body_element.text.should ==string
+end
+
+###[General] The element with id of "cs_PageModeContainer" and NOT contains "Read" 
+Then /^the element with id of "(.*)" should not contain "(.*)"$/ do |id, string|
+  body_element = @browser.element_by_xpath("id('#{id}')")
+  body_element.exists?  
+  body_element.text.should_not ==string
+end
+
 
 
 ["text_field", "radio", "checkbox", "select_list", "file_field"].each do |field|
