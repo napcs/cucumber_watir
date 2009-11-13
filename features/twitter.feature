@@ -6,11 +6,11 @@ Feature: Twitter login and signup
   
   Scenario: Logging in with incorrect details
     Given I go to "http://twitter.com/"
-      And I see "Please sign in"
+      And I click the Sign In button
      When I fill in "username" with "bphogan"
       And I fill in "password" with "foo"
       And I check "Remember me"
-      And I press "Sign In &raquo;"
+      And I press "Sign in"
      Then I should see "Wrong Username/Email and password combination."
 
   

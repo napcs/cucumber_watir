@@ -147,7 +147,6 @@ end
 
 ### [buttons] When I press "Submit" and wait 5 seconds
 When /^I press "([^\"]*)" and wait ([^\"]*) seconds$/ do |button, number_of_seconds|
-  start_url = @browser.url
   form_button = find_button(button)
   form_button.click
   sleep number_of_seconds.to_i
