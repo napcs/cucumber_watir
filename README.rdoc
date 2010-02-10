@@ -21,11 +21,17 @@ See the sample features in this project for more:
 
 == Installation
 
-We'll need some gems
+We'll need to install Ruby and some additional libraries.
+
 
 === Windows
+  You'll need to install both the Rubyinstaller and the devkit.
+  Installer: http://rubyforge.org/frs/download.php/69033/rubyinstaller-1.8.6-p398-rc2.exe
+  Devkit: http://wiki.github.com/oneclick/rubyinstaller/development-kit
 
-  gem install cucumber watir rspec --no-ri --no-rdoc
+  gem install cucumber rspec selenium-webdriver win32-proces --no-ri --no-rdoc
+  gem install watir-webdriver --pre
+  
   
 You can get colored output by installing win32console
   
@@ -33,13 +39,9 @@ You can get colored output by installing win32console
 
 === Mac
 
-  sudo gem install cucumber firewatir safariwatir rspec --no-ri --no-rdoc
+  sudo gem install cucumber safariwatir rspec selenium-webdriver --no-ri --no-rdoc
+  sudo gem install watir-webdriver --pre
 
-=== Firefox support
-
-Install your platform's JSSh plugin from here:  
-  
-  http://wiki.openqa.org/display/WTR/FireWatir+Installation  
 
 
 == Usage
@@ -152,8 +154,14 @@ Run all of your feature stories with
 On Windows, it will use IE by default. On the Mac, it'll use Firefox. You can override this
 
   rake features BROWSER=firefox
-  rake features BROWSER=safari
+  rake features BROWSER=chrome
   
+== Running a story
+
+You can run a specific story with 
+
+  rake features FEATURE=features/twitter.feature               
+
   
 === Safari users
 
@@ -163,13 +171,6 @@ Safariwatir is in a pretty sad state. It doesn't have the ability to
  * find fields by name with nested names (user[first_name])
  
 as well as other things. Be aware of these limitations if you choose to use it. The default on Apple platforms is to use Firefox
-  
-
-== Running a story
-
-You can run a specific story with 
-
-  cucumber $ rake features FEATURE=features/twitter.feature               
   
 
 == Writing your own matchers

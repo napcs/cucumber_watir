@@ -1,9 +1,9 @@
 require 'spec/expectations'
-require 'watir'
+require "watir-webdriver"
 
 if ENV['BROWSER'] == 'firefox'
-  Watir::Browser.default = 'firefox'
-  browser = Watir::Browser.new
+
+  browser = Watir::Browser.new(:firefox)
   
 else
   case RUBY_PLATFORM
@@ -12,14 +12,15 @@ else
     if ENV['BROWSER'] == 'safari'
       #Safariwatir is basically crap and not usable right now.
       browser = Watir::Safari.new
+    elsif ENV['BROWSER'] == 'chrome'
+      browser = Watir::Browser.new(:chrome)
+      
     else
-      Watir::Browser.default = 'firefox' 
-      browser = Watir::Browser.new
+      browser = Watir::Browser.new(:firefox)
     end
 
   when /win32|mingw/
-    Watir::Browser.default = 'ie'
-    browser = Watir::Browser.new
+    browser = Watir::Browser.new(:ie)
     
   when /java/
     require 'celerity'
