@@ -227,6 +227,15 @@ Watir matchers copyright 2009 Brian Hogan
 Everything else is part of the Cucumber or Watir project
 All under the MIT license.
 
+This package came from
+http://github.com/napcs/cucumber_watir
+
+Other references:
+http://cukes.info/
+http://wtr.rubyforge.org/rdoc/1.6.5/
+http://github.com/jarib/watir-webdriver
+
+
 == Acknowledgements
 
 This was based of the Cucumber samples. The Watir matchers are built by Brian Hogan
