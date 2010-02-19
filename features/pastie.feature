@@ -9,7 +9,7 @@ Feature: Share code with others
       And I fill in "paste[body]" with "This is a simple test case using Cucumber"
       And I select "Plain text" from "paste_parser_id"
       And I check "paste[restricted]"
-      When I press "Paste"
+      When I press the paste button
       Then I should see "less than a minute ago"  
       When I click "Edit"
        Then I should see "This paste will be private."
