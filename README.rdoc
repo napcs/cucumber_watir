@@ -113,8 +113,8 @@ with <tt>Given</tt>, <tt>When</tt>, <tt>Then</tt>, or <tt>And</tt>.
   [JS] When I move the mouse over the div containing "more information"
   [General] I should see an element with id of "cs_env_status"
   [General] I should NOT see an element with id of "cs_env_status"
-  ###[General] The element with id of "cs_PageModeContainer" contains "Read" 
-  ###[General] The element with id of "cs_PageModeContainer" and NOT contains "Read"
+  [General] The element with id of "cs_PageModeContainer" contains "Read" 
+  [General] The element with id of "cs_PageModeContainer" and NOT contains "Read"
   
 === Looking up fields
 

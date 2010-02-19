@@ -1,0 +1,15 @@
+1.0.3
+ * Pastie steps updated
+ * minor install instruction changes for Windows to fix typo
+
+1.0.2
+ * updated to use beta of webdriver for watir
+
+1.0.1
+ * updated examples, added new feature for Google searching
+ * updated matchers for finding elements by id
+ * updated url steps - should_not contain
+
+
+1.0.0 Initial Release
+

@@ -4,7 +4,6 @@ require 'cucumber/rake/task'
 Cucumber::Rake::Task.new do |t|
   t.cucumber_opts = "--format pretty"
 end
-
 desc "shows step definitions"
 task :steps do
   
