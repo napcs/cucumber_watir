@@ -1,9 +1,18 @@
 require 'spec/expectations'
-require "watir-webdriver"
+
+def use_watir
+  puts "***************** USING STANDARD WATIR ********************"
+  require 'watir'
+end
+
+def use_webdriver
+  puts "***************** USING WEBDRIVER ********************"
+  require "watir-webdriver"
+end
 
   case RUBY_PLATFORM
   when /darwin/
-   
+    use_webdriver
     if ENV['BROWSER'] == 'safari'
       #Safariwatir is basically crap and not usable right now.
       browser = Watir::Safari.new
@@ -17,12 +26,16 @@ require "watir-webdriver"
   when /win32|mingw/
     
     if ENV['BROWSER'] == 'chrome'
+      use_webdriver
       browser = Watir::Browser.new(:chrome)
       
     elsif ENV["BROWSER"] == "firefox"
+      use_webdriver      
       browser = Watir::Browser.new(:firefox)
     else
-      browser = Watir::Browser.new(:ie)
+      use_watir
+      Watir::Browser.default = 'ie'
+      browser = Watir::Browser.new
     end
     
   when /java/
