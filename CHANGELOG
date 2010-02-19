@@ -1,3 +1,7 @@
+1.0.4
+ * Made Chrome and FF work on windows
+ * Updated docs to reflect proper running.
+ 
 1.0.3
  * Pastie steps updated
  * minor install instruction changes for Windows to fix typo

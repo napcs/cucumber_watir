@@ -1,11 +1,6 @@
 require 'spec/expectations'
 require "watir-webdriver"
 
-if ENV['BROWSER'] == 'firefox'
-
-  browser = Watir::Browser.new(:firefox)
-  
-else
   case RUBY_PLATFORM
   when /darwin/
    
@@ -20,7 +15,15 @@ else
     end
 
   when /win32|mingw/
-    browser = Watir::Browser.new(:ie)
+    
+    if ENV['BROWSER'] == 'chrome'
+      browser = Watir::Browser.new(:chrome)
+      
+    elsif ENV["BROWSER"] == "firefox"
+      browser = Watir::Browser.new(:firefox)
+    else
+      browser = Watir::Browser.new(:ie)
+    end
     
   when /java/
     require 'celerity'
@@ -28,7 +31,7 @@ else
   else
     raise "This platform is not supported (#{PLATFORM})"
   end
-end
+
  
 # "before all"
  

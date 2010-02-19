@@ -153,14 +153,14 @@ Run all of your feature stories with
   
 On Windows, it will use IE by default. On the Mac, it'll use Firefox. You can override this
 
-  rake features BROWSER=firefox
-  rake features BROWSER=chrome
+  rake cucumber BROWSER=firefox
+  rake cucumber BROWSER=chrome
   
 == Running a story
 
 You can run a specific story with 
 
-  rake features FEATURE=features/twitter.feature               
+  rake cucumber FEATURE=features/twitter.feature               
 
   
 === Safari users
