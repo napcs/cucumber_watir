@@ -1,3 +1,5 @@
+1.0.4.1
+ * Reverted to standard WATIR for IE on Windows
 1.0.4
  * Made Chrome and FF work on windows
  * Updated docs to reflect proper running.
