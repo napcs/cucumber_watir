@@ -1,3 +1,9 @@
+1.0.5
+  * Added matchers for checking the page's title
+  * updated the Pastie feature
+  * fixed docs
+  * Added default rake task to run the features
+  * moved cucumber watir helpers out of the step_definitions file to their own file under features/support/
 1.0.4.1
  * Reverted to standard WATIR for IE on Windows
 1.0.4

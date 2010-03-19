@@ -54,8 +54,8 @@ end
  
 # "after all"
 at_exit do
- # unless ENV["STAY_OPEN"]
- #    browser.close
- #  end
+ unless ENV["STAY_OPEN"]
+   browser.close
+ end
 end
  

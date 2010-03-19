@@ -11,5 +11,7 @@ Feature: Share code with others
       And I check "paste[restricted]"
       When I press the paste button
       Then I should see "less than a minute ago"  
-      When I click "Edit"
-       Then I should see "This paste will be private."
+       Then the browser's title should contain "Private Paste"
+#       When I click "Edit"
+#       And I click "Delete paste" and confirm the popup
+#       Then I should see "Paste successfully deleted."
