@@ -7,7 +7,6 @@ Scenario: Advanced search
 Given I go to "http://www.google.com"
 And I click "Advanced Search"
 And I fill in "as_q" with "cucumber"
-#And I fill in the "all these words" field with "cucumber"
 And I fill in the "any of these unwanted words" field with "pickles"
 And I select "50 results" from the "Number of results" dropdown
 And I click the Date, usage rights, numeric range, and more section
