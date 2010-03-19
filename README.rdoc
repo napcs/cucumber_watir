@@ -154,7 +154,11 @@ Read through the matchers. You'll learn tons.
 
 Run all of your feature stories with
 
-  rake features
+  rake cucumber
+  
+or just
+  
+  rake
   
 On Windows, it will use IE by default. On the Mac, it'll use Firefox. You can override this
 

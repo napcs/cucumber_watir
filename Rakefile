@@ -14,3 +14,5 @@ task :steps do
    end
    puts step_defs.gsub('### ','')
 end
+
+task :default => :cucumber
