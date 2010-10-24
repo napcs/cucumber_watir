@@ -45,9 +45,11 @@ You can get colored output by installing win32console
   gem install win32console --no-ri --no-rdoc
 
 == Mac
-
-  sudo gem install cucumber safariwatir rspec selenium-webdriver --no-ri --no-rdoc
-  sudo gem install watir-webdriver --pre
+  (Use sudo if you're not using RVM)
+  
+  gem install cucumber safariwatir selenium-webdriver --no-ri --no-rdoc
+  gem install rspec -v=1.3.0 --no-ri --no-rdoc
+  gem install watir-webdriver --pre --no-ri --no-rdoc
 
 
 == Usage
