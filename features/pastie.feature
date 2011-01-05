@@ -10,8 +10,4 @@ Feature: Share code with others
       And I select "Plain text" from "paste_parser_id"
       And I check "paste[restricted]"
       When I press the paste button
-      Then I should see "less than a minute ago"  
        Then the browser's title should contain "Private Paste"
-#       When I click "Edit"
-#       And I click "Delete paste" and confirm the popup
-#       Then I should see "Paste successfully deleted."
